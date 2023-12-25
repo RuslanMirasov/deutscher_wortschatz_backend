@@ -1,8 +1,6 @@
 const { User } = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const path = require('path');
-const fs = require('fs/promises');
 
 require('dotenv').config();
 const { SECRET_KEY, BASE_URL } = process.env;
@@ -58,7 +56,7 @@ const resendVerifyEmail = async (req, res) => {
   const verifyEmail = {
     to: email,
     subject: 'Deutscher Wortschatz E-Mail-Bestätigung',
-    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Folgen Sie diesem Link, um Ihre E-Mail-Adresse zu verifizieren</a>`,
+    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${user.verificationToken}">Folgen Sie diesem Link, um Ihre E-Mail-Adresse zu verifizieren</a>`,
   };
   await sendEmail(verifyEmail);
   res.status(200).json({
