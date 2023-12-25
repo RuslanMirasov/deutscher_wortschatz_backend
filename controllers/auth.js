@@ -21,7 +21,7 @@ const register = async (req, res) => {
   const verifyEmail = {
     to: email,
     subject: 'Deutscher Wortschatz E-Mail-Bestätigung',
-    html: `<a target="_blank" href="${BASE_URL}/users/verify/${verificationToken}">Folgen Sie diesem Link, um Ihre E-Mail-Adresse zu verifizieren</a>`,
+    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Folgen Sie diesem Link, um Ihre E-Mail-Adresse zu verifizieren</a>`,
   };
 
   await sendEmail(verifyEmail);
@@ -57,8 +57,8 @@ const resendVerifyEmail = async (req, res) => {
   }
   const verifyEmail = {
     to: email,
-    subject: 'Verify email',
-    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${user.verificationToken}">Click verify email</a>`,
+    subject: 'Deutscher Wortschatz E-Mail-Bestätigung',
+    html: `<a target="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Folgen Sie diesem Link, um Ihre E-Mail-Adresse zu verifizieren</a>`,
   };
   await sendEmail(verifyEmail);
   res.status(200).json({
@@ -93,17 +93,17 @@ const login = async (req, res) => {
   res.status(200).json({
     token,
     user: {
+      name: user.name,
       email: user.email,
-      subscription: user.subscription,
     },
   });
 };
 
 const getCurrent = async (req, res) => {
-  const { email, subscription } = req.user;
+  const { name, email } = req.user;
   res.json({
+    name,
     email,
-    subscription,
   });
 };
 

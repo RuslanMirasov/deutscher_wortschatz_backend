@@ -57,7 +57,7 @@ const emailSchema = Joi.object({
 
 const loginSchema = Joi.object({
   email: Joi.string().pattern(emailRegExp).messages({ 'string.pattern.base': 'falsches Email-Format!' }),
-  password: Joi.string().required().messages({ 'any.required': 'fehlendes Feld für das erforderliche Kennwort' }),
+  password: Joi.string().required().messages({ 'any.required': 'Fehlendes Feld für das erforderliche Kennwort' }),
 });
 
 const schemas = {
