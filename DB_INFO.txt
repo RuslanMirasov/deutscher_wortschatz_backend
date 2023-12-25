@@ -1,2 +1,0 @@
-username=mirasovdev
-password=DCSqpoNSPT7yzdTB
